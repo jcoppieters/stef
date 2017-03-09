@@ -1,0 +1,66 @@
+<!doctype html>
+
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="<%=page.language%>"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="<%=page.language%>"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="<%=page.language%>"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="<%=page.language%>">
+<!--<![endif]-->
+
+<% include header.ejs %>
+
+<body id="page<%= page.itemId %>">
+  <style>
+    label { font-size: 15px; width: 130px }
+    #Aantal { width: 30px }
+    div#action_buttons { padding-left: 143px }
+  </style>
+
+	<div id="wrapper">
+
+    <% include top.ejs %>
+
+		<div class="content">
+
+			<div class="main">
+        <section>
+          <% if (typeof submitted !== "undefined") { %>
+           <section class="thankyou">
+             <h2>Dank U!</h2>
+             <p>We zien je op 22 april om 19u aan het SYCOD, Alfred Devoslaan 50, 8670 Oostduinkerke.</p>
+             <p>&nbsp;</p>
+             <p><strong>Vrienden van Stef.</strong></p>
+
+           </section>
+
+          <% } else { %>
+            <%- render({intro: 'N', not_kind: 'I'}) %>
+          <% } %>
+        </section>
+			</div>
+
+      <aside>
+        <%- render({intro: 'N', kind: 'I'}) %>
+      </aside>
+		</div>
+
+    <% include footer.ejs %>
+	</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="<%=cstatic%>/js/lib/jquery.validate<%=min%>.js"></script>
+  <script>
+    $(document).ready(function() {
+
+      $("form").validate();
+
+      $("form #submitter").click(function() {
+        $("form #request").val("send");
+        $("form").submit();
+      });
+
+    });
+  </script>
+
+
+</body>
+</html>
